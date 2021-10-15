@@ -1,8 +1,9 @@
 import React from "react";
-import { useState, useEffect } from 'react'
+import { Image, useState, useEffect } from 'react'
 import { Route, NavLink } from 'react-router-dom';
 import * as yup from 'yup'
 import axios from 'axios'
+import pizza from './Images/Pizza.jpg'
 
 
 import './App.css';
@@ -100,9 +101,18 @@ const App = () => {
             />
         </Route>
 
-        <Route exact path={`/`}>
-          <h2>Home Here</h2>
-          {/* <img src={('./Assets/Pizza.jpg')} alt={'slice of zza'}/> */}
+        <Route exact path={`/`} >
+          <img 
+            src={pizza} 
+            alt={`one of our pies`}
+            style={{
+              maxWidth:'90%',
+              display:'block',
+              marginLeft:'auto',
+              marginRight:'auto',
+              marginTop:'2%'
+            }}/>
+          <h3>Click above to order some 'zza</h3>
         </Route>
     </div>
 
