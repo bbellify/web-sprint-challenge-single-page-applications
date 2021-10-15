@@ -1,10 +1,14 @@
 import React from "react";
 import { useState, useEffect } from 'react'
 import { Route, Link } from 'react-router-dom';
+import * as yup from 'yup'
+
 import './App.css';
 
 
-import PizzaForm from "./PizzaForm";
+
+import PizzaForm from './PizzaForm';
+import formSchema from './formSchema'
 
 const App = () => {
 
@@ -19,9 +23,25 @@ const App = () => {
 
   }
 
+  const initialErrors = {
+    name: '',
+    size: '',
+    specialText: '',
+  }
+
   const [formValues, setFormValues] = useState(initialFormValues);
+  const [formErrors, setFormErrors] = useState(initialErrors);
+
+
+  const validate = (name,value) => {
+    yup.reach(formSchema, name)
+      .validate(value)
+      .then(() => setFormErrors({...formErrors, [name]: ''}))
+      .catch(err => setFormErrors({...formErrors, [name]: err.errors[0] }))
+  }
 
   const formChange = (name, value) => {
+    validate(name, value);
     setFormValues({
       ...formValues, [name]:value
     })
@@ -39,6 +59,8 @@ const App = () => {
     setFormValues(initialFormValues);
   }
 
+
+
   return (
     <div className='App'>
       <header>
@@ -51,7 +73,11 @@ const App = () => {
 
 
         <Route path={`/pizza`}>
-          <PizzaForm formChange={formChange} formValues={formValues} formSubmit={formSubmit}/>
+          <PizzaForm 
+            formChange={formChange} 
+            formValues={formValues} 
+            formSubmit={formSubmit}
+            formErrors={formErrors}/>
         </Route>
 
         <Route exact path={`/`}>

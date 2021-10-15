@@ -4,7 +4,8 @@ const PizzaForm = (props) => {
     const {
         formChange,
         formValues,
-        formSubmit
+        formSubmit,
+        formErrors
 
     } = props;
 
@@ -35,7 +36,7 @@ const PizzaForm = (props) => {
                         onChange={onChange}
                     />
                 </label>
-                
+
                 <label>Size:
                     <select id='size-dropdown'
                         name='size'
@@ -95,6 +96,9 @@ const PizzaForm = (props) => {
                         value={formValues.specialText}
                     />
                 </label>
+                <div className='formErrors'>
+                    <p>{formErrors.name}</p>
+                </div>
                 <button 
                     id='submit-button' 
                     style={{ width:'fit-content,', alignSelf: 'center'}}

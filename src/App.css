@@ -48,3 +48,9 @@ nav a:hover {
 #pizza-form button {
   margin: 2% 0;
 }
+
+.formErrors {
+  color: red;
+  font-weight: bold;
+  
+}
