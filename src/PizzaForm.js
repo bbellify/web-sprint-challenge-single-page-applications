@@ -5,7 +5,8 @@ const PizzaForm = (props) => {
         formChange,
         formValues,
         formSubmit,
-        formErrors
+        formErrors,
+        disabled
 
     } = props;
 
@@ -101,6 +102,7 @@ const PizzaForm = (props) => {
                 </div>
                 <button 
                     id='order-button'
+                    disabled={disabled}
                     style={{ width:'fit-content,', alignSelf: 'center'}}
                     > Order Pie</button>
             </form>

@@ -1,11 +1,11 @@
 import React from "react";
 import { useState, useEffect } from 'react'
-import { Route, Link } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 import * as yup from 'yup'
 import axios from 'axios'
 
-import './App.css';
 
+import './App.css';
 
 
 import PizzaForm from './PizzaForm';
@@ -32,6 +32,7 @@ const App = () => {
 
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialErrors);
+  const [disabled, setDisabled] = useState(true)
 
 
   const validate = (name,value) => {
@@ -71,6 +72,10 @@ const App = () => {
       )
   }
 
+  useEffect(() => {
+    formSchema.isValid(formValues)
+      .then(valid => setDisabled(!valid))
+  }, [formValues])
 
 
   return (
@@ -78,8 +83,8 @@ const App = () => {
       <header>
         <h1>Lambda Eats</h1>
         <nav>
-          <Link to={'/'}>Home</Link>
-          <Link to={`/pizza`} id='order-pizza'>Order 'zza</Link>
+          <NavLink to={'/'}>Home</NavLink>
+          <NavLink to={`/pizza`} id='order-pizza'>Order 'zza</NavLink>
         </nav>
       </header>
 
@@ -89,12 +94,14 @@ const App = () => {
             formChange={formChange} 
             formValues={formValues} 
             formSubmit={formSubmit}
-            formErrors={formErrors}/>
+            formErrors={formErrors}
+            disabled={disabled}
+            />
         </Route>
 
         <Route exact path={`/`}>
           <h2>Home Here</h2>
-          {/* <img src={`https://pixabay.com/images/id-3309418/`} alt={'slice of zza'}/> */}
+          {/* <img src={('./Assets/Pizza.jpg')} alt={'slice of zza'}/> */}
         </Route>
     </div>
 
