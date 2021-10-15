@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from 'react'
 import { Route, Link } from 'react-router-dom';
 import * as yup from 'yup'
+import axios from 'axios'
 
 import './App.css';
 
@@ -50,13 +51,24 @@ const App = () => {
   const formSubmit = () => {
     const newPizza = {
       name: formValues.name.trim(),
-      email: formValues.size.trim(),
-      toppings: ['pepperoni', 'olives', 'broccoli', 'mushrooms'].filter(hobby => !!formValues[hobby]),
+      size: formValues.size,
+      pepperoni: formValues.pepperoni,
+      olives: formValues.olives,
+      broccoli: formValues.broccoli,
+      mushrooms: formValues.mushrooms,
       specialText: formValues.specialText
     }
 
-    console.log(newPizza);
-    setFormValues(initialFormValues);
+    axios.post('https://reqres.in/api/orders', newPizza)
+      .then(res => {
+        console.log(res)
+      })
+      .catch( err => {
+        console.error(err)
+      })
+      .finally(
+        setFormValues(initialFormValues)
+      )
   }
 
 

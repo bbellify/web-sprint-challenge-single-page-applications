@@ -100,7 +100,7 @@ const PizzaForm = (props) => {
                     <p>{formErrors.name}</p>
                 </div>
                 <button 
-                    id='submit-button' 
+                    id='order-button' 
                     style={{ width:'fit-content,', alignSelf: 'center'}}
                     > Order Pie</button>
             </form>
