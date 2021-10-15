@@ -35,6 +35,7 @@ const PizzaForm = (props) => {
                         onChange={onChange}
                     />
                 </label>
+                
                 <label>Size:
                     <select id='size-dropdown'
                         name='size'
@@ -48,6 +49,7 @@ const PizzaForm = (props) => {
                         <option value='jumbo'>Good Choice - 16"</option>
                     </select>
                 </label>
+
                 <h4>Toppings:</h4>
                 <label>Pepperoni
                 <input 
@@ -97,12 +99,7 @@ const PizzaForm = (props) => {
                     id='submit-button' 
                     style={{ width:'fit-content,', alignSelf: 'center'}}
                     > Order Pie</button>
-
-
-
             </form>
-
-
         </div>
     )
 }
