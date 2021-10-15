@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { Route, NavLink } from 'react-router-dom';
 import * as yup from 'yup'
 import axios from 'axios'
