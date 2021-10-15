@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useEffect } from 'react'
 import { Route, Link } from 'react-router-dom';
 import './App.css';
 
@@ -6,6 +7,38 @@ import './App.css';
 import PizzaForm from "./PizzaForm";
 
 const App = () => {
+
+  const initialFormValues = {
+    name: '',
+    size: '',
+    pepperoni: false,
+    olives: false,
+    broccoli: false,
+    mushrooms: false,
+    specialText: '',
+
+  }
+
+  const [formValues, setFormValues] = useState(initialFormValues);
+
+  const formChange = (name, value) => {
+    setFormValues({
+      ...formValues, [name]:value
+    })
+  }
+
+  const formSubmit = () => {
+    const newPizza = {
+      name: formValues.name.trim(),
+      email: formValues.size.trim(),
+      toppings: ['pepperoni', 'olives', 'broccoli', 'mushrooms'].filter(hobby => !!formValues[hobby]),
+      specialText: formValues.specialText
+    }
+
+    console.log(newPizza);
+    setFormValues(initialFormValues);
+  }
+
   return (
     <div className='App'>
       <header>
@@ -18,11 +51,12 @@ const App = () => {
 
 
         <Route path={`/pizza`}>
-          <PizzaForm />
+          <PizzaForm formChange={formChange} formValues={formValues} formSubmit={formSubmit}/>
         </Route>
 
         <Route exact path={`/`}>
           <h2>Home Here</h2>
+          {/* <img src={`https://pixabay.com/images/id-3309418/`} alt={'slice of zza'}/> */}
         </Route>
     </div>
 

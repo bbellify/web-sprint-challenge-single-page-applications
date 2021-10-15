@@ -2,8 +2,8 @@
   text-align: center;
   width: 60%;
   background-color: whitesmoke;
-  height: 80vh;
   margin-top: 1%;
+  padding-bottom: 30px;
 }
 
 nav {
@@ -28,7 +28,23 @@ nav a:hover {
 #pizza-form {
   display: flex;
   flex-direction: column;
-  line-height: 2;
+  line-height: 1.5;
 
 
+}
+
+#pizza-form input {
+  margin: 0 1%;
+}
+
+#pizza-form select {
+  margin: 0 1%;
+}
+
+#pizza-form h4 {
+  margin: 1%;
+}
+
+#pizza-form button {
+  margin: 2% 0;
 }
